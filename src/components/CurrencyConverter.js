@@ -1,18 +1,18 @@
 import React from "react";
 
 export default function CurrencyConverter(props) {
-  const { typeCurrency, defaulVal, handleOnChange, amountss, onChangeAmount } =
+  const { typeCurrency, defaultVal, handleOnChange, amount, onChangeAmount } =
     props;
   return (
     <div>
-      <select value={defaulVal} onChange={handleOnChange}>
+      <select value={defaultVal} onChange={handleOnChange}>
         {typeCurrency.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>
         ))}
       </select>
-      <input type="number" value={amountss} onChange={onChangeAmount} />
+      <input type="number" min="0" value={amount} onChange={onChangeAmount} />
     </div>
   );
 }

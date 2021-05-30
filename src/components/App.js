@@ -8,7 +8,7 @@ const App = () => {
   const [toCurr, setToCurr] = useState();
   const [exchangeRate, setExchangeRate] = useState();
   const [amount, setAmount] = useState(1);
-  const [amountInFrom, setamountInFrom] = useState(true);
+  const [amountInFrom, setAmountInFrom] = useState(true);
 
   let toAmount, fromAmount;
   if (amountInFrom) {
@@ -18,31 +18,36 @@ const App = () => {
     toAmount = amount;
     fromAmount = amount / exchangeRate;
   }
-  console.log(amount);
-  console.log(exchangeRate);
-
+  const url =
+    "http://api.exchangeratesapi.io/v1/latest?access_key=16e980d3605abe6960372d3737419e44&format=1";
   useEffect(() => {
-    fetch(
-      "http://api.exchangeratesapi.io/v1/latest?access_key=16e980d3605abe6960372d3737419e44&format=1"
-    )
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         const first = Object.keys(data.rates)[0];
 
         setTypeCurrency([data.base, ...Object.keys(data.rates)]);
-        setFromCurr(data.base);
-        setToCurr(first);
+        setFromCurr("USD"); //data.base
+        setToCurr("INR");
         setExchangeRate(data.rates[first]);
       });
   }, []);
 
+  useEffect(() => {
+    if (fromCurr != null && toCurr != null) {
+      fetch(`${url}?base=${fromCurr}&symbols=${toCurr}`)
+        .then((res) => res.json())
+        .then((data) => setExchangeRate(data.rates[toCurr]));
+    }
+  }, [fromCurr, toCurr]);
+
   function handleFromAmontChange(e) {
     setAmount(e.target.value);
-    setamountInFrom(true);
+    setAmountInFrom(true);
   }
-  function handleToAmontChange() {
+  function handleToAmontChange(e) {
     setAmount(e.target.value);
-    setamountInFrom(false);
+    setAmountInFrom(false);
   }
 
   return (
@@ -50,17 +55,17 @@ const App = () => {
       <h1>Currency Converter App</h1>
       <CurrencyConverter
         typeCurrency={typeCurrency}
-        defaulVal={fromCurr}
+        defaultVal={fromCurr}
         handleOnChange={(e) => setFromCurr(e.target.value)}
         onChangeAmount={handleFromAmontChange}
-        amountss={fromAmount}
+        amount={fromAmount}
       />
       <CurrencyConverter
         typeCurrency={typeCurrency}
-        defaulVal={toCurr}
+        defaultVal={toCurr}
         handleOnChange={(e) => setToCurr(e.target.value)}
         onChangeAmount={handleToAmontChange}
-        amoutss={toAmount}
+        amount={toAmount}
       />
     </div>
   );
