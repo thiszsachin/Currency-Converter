@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CurrencyConverter from "./CurrencyConverter";
 import "../styles/App.css";
-import { CgArrowsExchangeAltV } from "react-icons/Cg";
+
 const App = () => {
   const [typeCurrency, setTypeCurrency] = useState([]);
   const [fromCurr, setFromCurr] = useState();
@@ -27,7 +27,7 @@ const App = () => {
         const first = Object.keys(data.rates)[0];
 
         setTypeCurrency([data.base, ...Object.keys(data.rates)]);
-        setFromCurr("USD"); //data.base
+        setFromCurr("USD");
         setToCurr("INR");
         setExchangeRate(data.rates[first]);
       });
@@ -62,7 +62,7 @@ const App = () => {
           onChangeAmount={handleFromAmontChange}
           amount={fromAmount}
         />
-        <CgArrowsExchangeAltV />
+
         <CurrencyConverter
           typeCurrency={typeCurrency}
           defaultVal={toCurr}

@@ -2,6 +2,9 @@ h1 {
   color: rgb(26, 49, 49);
   text-align: center;
   margin: 36px;
+  border: 3px solid rgb(26, 49, 49);
+  border-radius: 28px;
+  padding: 12px;
 }
 
 body {
@@ -10,9 +13,9 @@ body {
   text-align: center;
   justify-content: center;
   min-height: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .container {
-  text-align: center;
   background-color: rgb(26, 49, 49);
   border-radius: 16px;
   height: 400px;
@@ -29,6 +32,8 @@ body {
   text-align: center;
   border-radius: 12px;
   padding: 6px;
+  color: rgb(228, 202, 168);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .input {
@@ -36,4 +41,5 @@ body {
   border-radius: 12px;
   width: 250px;
   padding: 10px;
+  color: rgb(218, 153, 69);
 }
