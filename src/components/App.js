@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CurrencyConverter from "./CurrencyConverter";
 import "../styles/App.css";
-
+import { CgArrowsExchangeAltV } from "react-icons/Cg";
 const App = () => {
   const [typeCurrency, setTypeCurrency] = useState([]);
   const [fromCurr, setFromCurr] = useState();
   const [toCurr, setToCurr] = useState();
   const [exchangeRate, setExchangeRate] = useState();
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(0);
   const [amountInFrom, setAmountInFrom] = useState(true);
 
   let toAmount, fromAmount;
@@ -53,20 +53,24 @@ const App = () => {
   return (
     <div id="main">
       <h1>Currency Converter App</h1>
-      <CurrencyConverter
-        typeCurrency={typeCurrency}
-        defaultVal={fromCurr}
-        handleOnChange={(e) => setFromCurr(e.target.value)}
-        onChangeAmount={handleFromAmontChange}
-        amount={fromAmount}
-      />
-      <CurrencyConverter
-        typeCurrency={typeCurrency}
-        defaultVal={toCurr}
-        handleOnChange={(e) => setToCurr(e.target.value)}
-        onChangeAmount={handleToAmontChange}
-        amount={toAmount}
-      />
+      <div className="container">
+        <CurrencyConverter
+          className="col-first"
+          typeCurrency={typeCurrency}
+          defaultVal={fromCurr}
+          handleOnChange={(e) => setFromCurr(e.target.value)}
+          onChangeAmount={handleFromAmontChange}
+          amount={fromAmount}
+        />
+        <CgArrowsExchangeAltV />
+        <CurrencyConverter
+          typeCurrency={typeCurrency}
+          defaultVal={toCurr}
+          handleOnChange={(e) => setToCurr(e.target.value)}
+          onChangeAmount={handleToAmontChange}
+          amount={toAmount}
+        />
+      </div>
     </div>
   );
 };
