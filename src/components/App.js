@@ -19,7 +19,7 @@ const App = () => {
     fromAmount = amount / exchangeRate;
   }
   const url =
-    "http://api.exchangeratesapi.io/v1/latest?access_key=16e980d3605abe6960372d3737419e44&format=1";
+    "http://api.exchangeratesapi.io/v1/latest?access_key=1907bb31b37e7112b19ad2abc78b330f&format=1";
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
